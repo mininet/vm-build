@@ -1,0 +1,29 @@
+name: mininet-vm-build
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Mininet VM Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 2.x
+      - name: Install VM build dependencies
+        run:  |
+              sudo apt-get -y -qq install \
+                   kvmtool cloud-utils genisoimage qemu-kvm qemu-utils \
+                   moreutils mtools
+              python -m pip install pexpect
+              sudo kvm-ok || echo "kvm-ok failed"
+      - name: Check out Mininet
+        run:  git clone https://github.com/mininet/mininet
+      - name: Build Ubuntu 20.04 VM
+        run:  python mininet/util/vm/build.py -v -z --nokvm focal64server
+      - name: Upload Mininet VM
+        uses: actions/upload-artifact@v2
+        with:
+            name: mininet-vm
+            path: mn-*/*.zip
