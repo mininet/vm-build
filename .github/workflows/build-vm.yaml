@@ -13,6 +13,7 @@ jobs:
           python-version: 2.x
       - name: Install VM build dependencies
         run:  |
+              sudo apt-get -y -qq update
               sudo apt-get -y -qq install \
                    kvmtool cloud-utils genisoimage qemu-kvm qemu-utils \
                    moreutils mtools
