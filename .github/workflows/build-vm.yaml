@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   # Nightly build at 1:15 UTC
-  scheduled:
+  schedule:
     - cron: '01/15 * * * *'
 
 jobs:
