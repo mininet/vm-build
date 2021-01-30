@@ -2,13 +2,10 @@ name: mininet-vm-build
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
   # Nightly build at 1:15 UTC
-  cron: '01/15 * * * *'
+  scheduled:
+    - cron: '01/15 * * * *'
 
 jobs:
   build:
