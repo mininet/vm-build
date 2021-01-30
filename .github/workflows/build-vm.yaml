@@ -1,8 +1,8 @@
 name: mininet-vm-build
 
 on:
-  - push
-  - pull_request
+  - push:
+  - pull_request:
   # Nightly build at 1:15 UTC
   - cron: '01/15 * * * *'
 
