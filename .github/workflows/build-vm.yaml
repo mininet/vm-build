@@ -38,4 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: mininet-vm-${{ matrix.branch}}-${{ matrix.flavor }}
-            path: [mn-*/*.zip,mn-*/*.txt]
+            path: |
+                  mn-*/*.zip
+                  mn-*/*.txt
+              
