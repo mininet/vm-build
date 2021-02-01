@@ -5,7 +5,7 @@ on:
   pull_request:
   # Nightly build at 1:15 UTC
   schedule:
-    - cron: '01 15 * * * *'
+    - cron: '01 15 * * *'
 
 jobs:
   build:
