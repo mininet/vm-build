@@ -38,7 +38,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: mininet-vm-${{ matrix.branch}}-${{ matrix.flavor }}
-            path: |
-                  mn-*/*.zip
-                  mn-*/*.txt
-              
+            path: mn-*/*.zip
+      - name: Upload Mininet VM Checksums
+        uses: actions/upload-artifact@v2
+        with:
+            name: mininet-sha256sum-${{ matrix.branch}}-${{ matrix.flavor }}
+            path: mn-*/sha256sum.txt
