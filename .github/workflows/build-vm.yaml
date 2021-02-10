@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         flavor: [focal64server, bionic64server, xenial64server, xenial32server]
-        branch: [master, 2.3.0b2]
+        branch: [master, 2.3.0rc2]
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
