@@ -13,8 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        flavor: [focal64server, bionic64server, xenial64server, xenial32server]
         branch: [master, 2.3.0]
+        flavor: [focal64server, bionic64server, xenial64server, xenial32server]
+    env:
+       BRANCH: ${{ matrix.branch }}
+       FLAVOR: ${{ matrix.flavor }}
     steps:
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -33,7 +36,7 @@ jobs:
       - name: Build Ubuntu ${{ matrix.flavor }} VM
         run:  |
               python mininet/util/vm/build.py -v -b master -z --nokvm ${{ matrix.flavor }}
-              (pushd mn* && sha256sum * > sha256sum-$${{ matrix.flavor }}.txt)
+              (pushd mn* && sha256sum * > sha256sum-$BRANCH-$FLAVOR.txt)
       - name: Upload Mininet VM
         uses: actions/upload-artifact@v2
         with:
